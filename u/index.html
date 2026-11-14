@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rivo profile</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Nunito+Sans:wght@800&display=swap" rel="stylesheet">
+<style>
+  :root { --black:#070707; --text:#F4EBE4; --muted:#A7A7A7; --card:#1F1F1F; --yellow:#DFFF00; }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; background:var(--black); color:var(--text);
+         font: 17px/1.5 Inter, -apple-system, system-ui, sans-serif;
+         display:flex; align-items:center; justify-content:center; padding:24px 16px; }
+  main { max-width:420px; width:100%; background:var(--card); border-radius:20px; padding:32px 24px; text-align:center; }
+  h1 { font: 800 32px/1.1 "Nunito Sans", -apple-system, system-ui, sans-serif; margin:0 0 8px; }
+  .dot { color:var(--yellow); }
+  p { color:var(--muted); margin:0 0 24px; }
+  a.button { display:block; background:var(--yellow); color:var(--black); font-weight:800; text-decoration:none;
+             border-radius:14px; padding:14px; min-height:44px; }
+  small { display:block; margin-top:16px; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="who">A friend is on Rivo<span class="dot">.</span></h1>
+  <p>Rivo is where they rate albums and log the shows and festivals they've been to.</p>
+  <a class="button" id="open" href="com.rivoapp.rivo://u/">Open in Rivo</a>
+  <small>Don't have Rivo yet? It's in a private beta. Ask your friend for an invite.</small>
+</main>
+<script>
+  // ?name=<username>: show it and point the button at the app's profile link.
+  var name = (new URLSearchParams(location.search).get("name") || "").toLowerCase();
+  if (/^[a-z0-9_.]{3,20}$/.test(name)) {
+    document.getElementById("who").firstChild.textContent = "@" + name + " is on Rivo";
+    document.getElementById("open").href = "com.rivoapp.rivo://u/" + name;
+    document.title = "@" + name + " on Rivo";
+  }
+</script>
+</body>
+</html>
